@@ -1,11 +1,11 @@
 pipline {
 	agent any
 	stages {
-		stage('Checkout') {
-			steps {
-				checkout scm
-			}
-		}
+		// stage('Checkout') {
+		// 	steps {
+		// 		checkout scm
+		// 	}
+		// }
 		stage('Build Deploy') {
 			steps {
 				withCredentials([usernamePassword(credentialsId: 'dockeruser', 
