@@ -6,9 +6,9 @@ pipline {
 				checkout scm
 			}
 		}
-		stage('Build&Deploy') {
+		stage('Build Deploy') {
 			steps {
-				withCredentials([usernamePassword(credentialsId: 'DOCKER_USER', 
+				withCredentials([usernamePassword(credentialsId: 'dockeruser', 
 					usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
     			sh "docker login --username=$USERNAME --password=$PASSWORD"
     			sh "docker build -t $IMAGE_NAME:$BUILD_NUMBER"
