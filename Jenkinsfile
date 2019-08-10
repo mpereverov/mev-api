@@ -7,7 +7,9 @@ pipeline {
 		// 	}
 		// }
 		stage('Build Deploy') {
-			agent {
+			
+			steps {
+				agent {
 			    dockerfile {
 			        filename 'Dockerfile'
 			        // dir 'build'
@@ -16,7 +18,6 @@ pipeline {
 			        registryCredentialsId 'dockeruser'
 			    }
 			}
-			steps {
 				// withCredentials([usernamePassword(credentialsId: 'dockeruser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
     			// sh "docker login --username=$USERNAME --password=$PASSWORD"
     			// sh "docker build -t $IMAGE_NAME:$BUILD_NUMBER"
