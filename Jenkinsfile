@@ -1,15 +1,5 @@
 pipeline {
-	// agent any
-	agent {
-	    dockerfile {
-	        filename 'Dockerfile'
-	         dir .
-	        // args '-t ${IMAGE_NAME}:${BUILD_NUMBER}'
-	        // additionalBuildArgs  '--build-arg version=1.0.2'
-	        registryUrl 'https://index.docker.io'
-	        registryCredentialsId 'dockeruser'
-    	}
-	}
+	agent any
 	stages {
 		// stage('Checkout') {
 		// 	steps {
@@ -17,9 +7,18 @@ pipeline {
 		// 	}
 		// }
 		stage('Build Deploy') {
-			
+			agent {
+			    dockerfile {
+			        filename 'Dockerfile'
+			        // dir 'build'
+			        // args '-t ${IMAGE_NAME}:${BUILD_NUMBER}'
+			        // additionalBuildArgs  '--build-arg version=1.0.2'
+			        // registryUrl 'https://myregistry.com/'
+			        registryCredentialsId 'dockeruser'
+		    	}
+			}
 			steps {
-				echo "Hello"
+				echo "${IMAGE_NAME}:${BUILD_NUMBER}"
 				// withCredentials([usernamePassword(credentialsId: 'dockeruser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
     			// sh "docker login --username=$USERNAME --password=$PASSWORD"
     			// sh "docker build -t $IMAGE_NAME:$BUILD_NUMBER"
