@@ -17,17 +17,17 @@ pipeline {
     			// sh "docker logout"
 				// }		
 			}
-			agent {
-			    dockerfile {
-			    	// label 'Jenkins'
-			        // filename 'Dockerfile'
-			        // dir 'build'
-			        args '-t ${IMAGE_NAME}:${BUILD_NUMBER}'
-			        // additionalBuildArgs  '--build-arg version=1.0.2'
-			        // registryUrl 'https://myregistry.com/'
-			        registryCredentialsId 'dockeruser'
-		    	}
-			}
+			// agent {
+			//     dockerfile {
+			//     	// label 'Jenkins'
+			//         // filename 'Dockerfile'
+			//         // dir 'build'
+			//         args '-t ${IMAGE_NAME}:${BUILD_NUMBER}'
+			//         // additionalBuildArgs  '--build-arg version=1.0.2'
+			//         // registryUrl 'https://myregistry.com/'
+			//         registryCredentialsId 'dockeruser'
+		 //    	}
+			// }
 			
 		}
 	}
