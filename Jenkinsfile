@@ -1,5 +1,5 @@
 pipeline {
-	agent none
+	agent any
 	stages {
 		// stage('Checkout') {
 		// 	steps {
@@ -9,7 +9,7 @@ pipeline {
 		stage('Build Deploy') {
 			agent {
 			    dockerfile {
-			    	label 'Jenkins'
+			    	// label 'Jenkins'
 			        // filename 'Dockerfile'
 			        // dir 'build'
 			        args '-t ${IMAGE_NAME}:${BUILD_NUMBER}'
