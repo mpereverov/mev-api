@@ -9,6 +9,7 @@ pipeline {
 		stage('Build Deploy') {
 			agent {
 			    dockerfile {
+			    	label 'Jenkins'
 			        // filename 'Dockerfile'
 			        // dir 'build'
 			        args '-t ${IMAGE_NAME}:${BUILD_NUMBER}'
