@@ -7,8 +7,7 @@ pipeline {
 		// 	}
 		// }
 		stage('Build Deploy') {
-			steps {
-			node {
+			// agent {
 			    dockerfile {
 			        filename 'Dockerfile'
 			        // dir 'build'
@@ -17,7 +16,8 @@ pipeline {
 			        // registryUrl 'https://myregistry.com/'
 			        registryCredentialsId 'dockeruser'
 		    	}
-			}
+			// }
+			steps {
 				echo "${IMAGE_NAME}:${BUILD_NUMBER}"
 				// withCredentials([usernamePassword(credentialsId: 'dockeruser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
     			// sh "docker login --username=$USERNAME --password=$PASSWORD"
