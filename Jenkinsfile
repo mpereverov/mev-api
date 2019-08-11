@@ -11,7 +11,8 @@ pipeline {
 			    dockerfile {
 			        filename 'Dockerfile'
 			        // dir 'build'
-			        label '$IMAGE_NAME:$BUILD_NUMBER'
+			        label '${IMAGE_NAME}:${BUILD_NUMBER}'
+			        // additionalBuildArgs  '--build-arg version=1.0.2'
 			        // registryUrl 'https://myregistry.com/'
 			        registryCredentialsId 'dockeruser'
 		    	}
