@@ -8,7 +8,7 @@ pipeline {
 		// }
 		stage('Build Deploy') {
 			steps {
-							agent {
+			node {
 			    dockerfile {
 			        filename 'Dockerfile'
 			        // dir 'build'
