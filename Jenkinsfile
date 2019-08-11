@@ -7,6 +7,16 @@ pipeline {
 		// 	}
 		// }
 		stage('Build Deploy') {
+			steps {
+				sh sudo usermod -a -G docker jenkins
+				// echo "${IMAGE_NAME}:${BUILD_NUMBER}"
+				// withCredentials([usernamePassword(credentialsId: 'dockeruser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+    			// sh "docker login --username=$USERNAME --password=$PASSWORD"
+    			// sh "docker build -t $IMAGE_NAME:$BUILD_NUMBER"
+    			// sh "docker push $IMAGE_NAME:$BUILD_NUMBER"
+    			// sh "docker logout"
+				// }		
+			}
 			agent {
 			    dockerfile {
 			    	// label 'Jenkins'
@@ -18,15 +28,7 @@ pipeline {
 			        registryCredentialsId 'dockeruser'
 		    	}
 			}
-			steps {
-				echo "${IMAGE_NAME}:${BUILD_NUMBER}"
-				// withCredentials([usernamePassword(credentialsId: 'dockeruser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-    			// sh "docker login --username=$USERNAME --password=$PASSWORD"
-    			// sh "docker build -t $IMAGE_NAME:$BUILD_NUMBER"
-    			// sh "docker push $IMAGE_NAME:$BUILD_NUMBER"
-    			// sh "docker logout"
-				// }		
-			}
+			
 		}
 	}
 }
