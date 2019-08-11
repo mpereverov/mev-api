@@ -8,7 +8,8 @@ pipeline {
 		// }
 		stage('Build Deploy') {
 			steps {
-				sh 'sudo usermod -a -G docker jenkins'
+				// sh 'sudo usermod -a -G docker jenkins'
+				sh 'docker images'
 				// echo "${IMAGE_NAME}:${BUILD_NUMBER}"
 				// withCredentials([usernamePassword(credentialsId: 'dockeruser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
     			// sh "docker login --username=$USERNAME --password=$PASSWORD"
