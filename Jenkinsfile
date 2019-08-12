@@ -8,10 +8,12 @@ pipeline {
 		// }
 		stage('Build Deploy') {
 			steps {
-				script {
-					sh "docker build -t $IMAGE_NAME:$BUILD_NUMBER ."
-    				sh "docker push $IMAGE_NAME:$BUILD_NUMBER"
+				withDockerRegistry(credentialsId: 'dockeruser') {
+					script {
+						sh "docker build -t $IMAGE_NAME:$BUILD_NUMBER ."
+	    				sh "docker push $IMAGE_NAME:$BUILD_NUMBER"
 
+					}
 				}
 				// echo "${imgNAME}:${BUILD_NUMBER}"
 				// withCredentials([usernamePassword(credentialsId: 'dockeruser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
