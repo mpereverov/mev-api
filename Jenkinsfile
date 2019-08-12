@@ -8,7 +8,7 @@ pipeline {
 		// }
 		stage('Build Deploy') {
 			steps {
-				withDockerRegistry(credentialsId: 'dockeruser') {
+				withDockerRegistry(credentialsId: 'dockeruser' ulr: 'https://docker.io/') {
 					script {
 						sh "docker build -t $IMAGE_NAME:$BUILD_NUMBER ."
 	    				sh "docker push $IMAGE_NAME:$BUILD_NUMBER"
