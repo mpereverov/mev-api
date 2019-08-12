@@ -24,7 +24,7 @@ pipeline {
 			        filename 'Dockerfile'
 			        // dir 'build'
 			        // args '-t ${IMAGE_NAME}:${BUILD_NUMBER}'
-			        additionalBuildArgs  '--build-arg version=${BUILD_NUMBER}'
+			        additionalBuildArgs  '--build-arg IMG_NAME=${imgNAME}, TAG=${BUILD_NUMBER}'
 			        registryUrl 'https://docker.io/'
 			        // registryCredentialsId 'dockeruser'
 		    	}
