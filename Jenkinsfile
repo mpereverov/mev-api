@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('Build Deploy') {
 			steps {
-				withCredentials([usernamePassword(credentialsId: 'dockeruser', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+				withCredentials([usernamePassword($CREDENTIALS_ID, passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
 					echo "$CREDENTIALS_ID"
 					sh "docker login --username=$USERNAME --password=$PASSWORD"
 	    			sh "docker build -t $IMAGE_NAME:$BUILD_NUMBER ."
