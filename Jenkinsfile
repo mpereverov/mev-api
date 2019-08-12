@@ -26,7 +26,7 @@ pipeline {
 			        args '-t ${IMAGE_NAME}:${BUILD_NUMBER}'
 			        // additionalBuildArgs  '--build-arg version=1.0.2'
 			        // registryUrl 'https://myregistry.com/'
-			        registryCredentialsId 'dockeruser'
+			        // registryCredentialsId 'dockeruser'
 		    	}
 			}
 			
