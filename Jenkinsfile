@@ -8,12 +8,12 @@ pipeline {
 		// }
 		stage('Build Deploy') {
 			steps {
-				withCredentials([dockerCert(credentialsId: 'docker_cert', variable: 'DOCKER_CERT_PATH')]) {
-					script {
-						sh "docker build -t $IMAGE_NAME:$BUILD_NUMBER ."
-	    				sh "docker push $IMAGE_NAME:$BUILD_NUMBER"
-
-					}
+				withCredentials([usernamePassword(credentialsId: 'dockeruser', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+					sh "docker login --username=$USERNAME --password=$PASSWORD"
+	    			sh "docker build -t $IMAGE_NAME:$BUILD_NUMBER"
+	    			sh "docker push $IMAGE_NAME:$BUILD_NUMBER"
+	    			sh "docker image rmi $IMAGE_NAME:$BUILD_NUMBER"
+	    			sh "docker logout"
 				}
 				// echo "${imgNAME}:${BUILD_NUMBER}"
 				// withCredentials([usernamePassword(credentialsId: 'dockeruser', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
