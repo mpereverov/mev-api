@@ -17,11 +17,11 @@ pipeline {
   	post {
     	success {
 	    	build job: 'Deploy API component', 
-		    	parameters: [string
-		    	(name: 'component_NAME', value: 'api'),
-		    	(name: 'project_NAME', value: 'app'),
-		    	(name: 'PORTS', value: '4004:4004'),
-		    	(name: 'network_NAME', value: 'mev'),
+		    	parameters: [
+			    	string(name: 'component_NAME', value: 'api'),
+			    	string(name: 'project_NAME', value: 'app'),
+			    	string(name: 'PORTS', value: '4004:4004'),
+			    	string(name: 'network_NAME', value: 'mev'),
 		    	], 
 	    	quietPeriod: 0, wait: false
     	}
