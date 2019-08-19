@@ -3,13 +3,13 @@ properties([
 		string(
 			defaultValue: 'mpereverov/mev-API',
 			desription:'',
-			name: 'IMAGE_NAME'
+			name: 'IMAGE_NAME',
 			trim: true
 		),
 		string(
 			defaultValue: '$env.BUILD_NUMBER',
 			desription:'',
-			name: 'IMAGE_TAG'
+			name: 'IMAGE_TAG',
 			trim: true
 		),
 	])
