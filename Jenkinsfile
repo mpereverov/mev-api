@@ -1,7 +1,7 @@
 properties([
 	parameters([
 		string(
-			defaultValue: 'mpereverov/mev-API',
+			defaultValue: 'mpereverov/mev-api',
 			description:'',
 			name: 'IMAGE_NAME',
 			trim: true
@@ -24,31 +24,23 @@ pipeline {
 				withCredentials([usernamePassword(credentialsId: "dockeruser", 
 					passwordVariable: 'docker_PASSWORD', usernameVariable: 'docker_USERNAME')]) {
 					sh "docker login --username=$docker_USERNAME --password=$docker_PASSWORD"
-	    			sh "echo '$IMAGE_NAME':'$env.BUILD_NUMBER'"
-	    			// sh "docker build -t $IMAGE_NAME:$env.BUILD_NUMBER ."
-	    			// sh "docker push $IMAGE_NAME:$env.BUILD_NUMBER"
+	    			sh "echo '$IMAGE_NAME':'$IMAGE_TAG'"
+	    			// sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
+	    			// sh "docker push $IMAGE_NAME:$IMAGE_TAG"
 	    			sh "docker logout"
-	    			// sh "docker image rmi $IMAGE_NAME:$env.BUILD_NUMBER"
+	    			// sh "docker image rmi $IMAGE_NAME:$IMAGE_TAG"
 				}
 			}
 		}
 	}
-  	// post {
-   //  	success {
-   //  		withCredentials([sshUserPrivateKey(credentialsId: 'aws_id_key', 
-   //  			keyFileVariable: 'KEY', passphraseVariable: 'PASSPHRASE', 
-   //  			usernameVariable: 'USERNAME')]) {
-	  //   	build job: 'Deploy API component', 
-		 //    	parameters: [
-			//     	string(name: 'component_NAME', value: 'api'),
-			//     	string(name: 'project_NAME', value: 'app'),
-			//     	string(name: 'PORTS', value: '4004:4004'),
-			//     	string(name: 'network_NAME', value: 'mev'),
-			//     	string(name: 'docker_USERNAME', value: '$docker_USERNAME'),
-			//     	string(name: 'docker_PASSWORD', value: '$docker_PASSWORD')
-		 //    	], 
-	  //   	quietPeriod: 0, wait: false
-	  //   	}
-   //  	}
-  	// }
+  	post {
+    	success {
+	    	build job: 'Deploy API component', 
+	    	parameters: [
+	    	string(name: 'component_NAME', value: 'API'), 
+	    	string(name: 'IMAGE_NAME', value: '${params.IMAGE_NAME}'), 
+	    	string(name: 'IMAGE_TAG', value: '${params.BUILD_NUMBER}')
+	    	], quietPeriod: 3, wait: false
+    	}
+  	}
 }
