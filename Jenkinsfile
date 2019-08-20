@@ -24,7 +24,7 @@ pipeline {
 				withCredentials([usernamePassword(credentialsId: "dockeruser", 
 					passwordVariable: 'docker_PASSWORD', usernameVariable: 'docker_USERNAME')]) {
 					sh "docker login --username=$docker_USERNAME --password=$docker_PASSWORD"
-	    			sh 'echo '$IMAGE_NAME:$IMAGE_TAG'
+	    			sh 'echo $IMAGE_NAME:$IMAGE_TAG'
 	    			// sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
 	    			// sh "docker push $IMAGE_NAME:$IMAGE_TAG"
 	    			sh "docker logout"
