@@ -7,7 +7,7 @@ properties([
 			trim: true
 		),
 		string(
-			defaultValue: '$env.BUILD_NUMBER',
+			defaultValue: '${env.BUILD_NUMBER}',
 			description:'',
 			name: 'IMAGE_TAG',
 			trim: true
