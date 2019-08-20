@@ -2,13 +2,13 @@ properties([
 	parameters([
 		string(
 			defaultValue: 'mpereverov/mev-API',
-			desription:'',
+			description:'',
 			name: 'IMAGE_NAME',
 			trim: true
 		),
 		string(
 			defaultValue: '$env.BUILD_NUMBER',
-			desription:'',
+			description:'',
 			name: 'IMAGE_TAG',
 			trim: true
 		),
@@ -21,7 +21,7 @@ pipeline {
 	stages {
 		stage('Build Push') {
 			steps {
-				withCredentials([usernamePassword(credentialsId: "$CREDENTIALS_ID", 
+				withCredentials([usernamePassword(credentialsId: "dockeruser", 
 					passwordVariable: 'docker_PASSWORD', usernameVariable: 'docker_USERNAME')]) {
 					sh "docker login --username=$docker_USERNAME --password=$docker_PASSWORD"
 	    			sh "echo '$IMAGE_NAME':'$env.BUILD_NUMBER'"
