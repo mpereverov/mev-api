@@ -35,14 +35,13 @@ pipeline {
 	}
   	post {
     	success {
-    		sh "echo $IMAGE_NAME:$BUILD_NUMBER"
-    		sh "echo $docker_USERNAME"
+    		sh "echo $env.IMAGE_NAME:$env.BUILD_NUMBER"
 	    	build job: 'Deploy API component', 
-	    	parameters: ([
+	    	parameters: [
 	    		    	string(name: 'component_NAME', value: 'API'), 
-	    		    	string(name: 'IMAGE_NAME', value: '$env.IMAGE_NAME'), 
-	    		    	string(name: 'IMAGE_TAG', value: '$env.BUILD_NUMBER')
-	    		    	]), quietPeriod: 5, wait: false
+	    		    	string(name: 'IMAGE_NAME', value: "${env.IMAGE_NAME}"), 
+	    		    	string(name: 'IMAGE_TAG', value: '${env.BUILD_NUMBER}')
+	    		    	], quietPeriod: 5, wait: false
     	}
   	}
 }
