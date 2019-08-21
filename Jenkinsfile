@@ -29,6 +29,7 @@ pipeline {
 	    			// sh "docker push $IMAGE_NAME:$BUILD_NUMBER"
 	    			sh "docker logout"
 	    			// sh "docker image rmi $IMAGE_NAME:$BUILD_NUMBER"
+	    			sh "echo $env.IMAGE_NAME:$env.BUILD_NUMBER"
 				}
 			}
 		}
@@ -39,7 +40,7 @@ pipeline {
 	    	build job: 'Deploy API component', 
 	    	parameters: [
 	    		    	string(name: 'component_NAME', value: 'API'), 
-	    		    	string(name: 'IMAGE_NAME', value: '$params.IMAGE_NAME'), 
+	    		    	string(name: 'IMAGE_NAME', value: '$env.IMAGE_NAME'), 
 	    		    	string(name: 'IMAGE_TAG', value: '$env.BUILD_NUMBER')
 	    		    	], quietPeriod: 5, wait: false
     	}
