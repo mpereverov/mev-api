@@ -40,8 +40,8 @@ pipeline {
 	    	build job: 'Deploy API component', 
 	    	parameters: [
 	    		    	string(name: 'component_NAME', value: 'API'), 
-	    		    	string(name: 'IMAGE_NAME', value: '$env.IMAGE_NAME'), 
-	    		    	string(name: 'IMAGE_TAG', value: '$env.BUILD_NUMBER')
+	    		    	string(name: 'IMAGE_NAME', value: '${env.IMAGE_NAME}'), 
+	    		    	string(name: 'IMAGE_TAG', value: '${env.BUILD_NUMBER}')
 	    		    	], quietPeriod: 5, wait: false
     	}
   	}
