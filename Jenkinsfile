@@ -2,13 +2,12 @@ properties([
 	parameters([
 		string(
 			defaultValue: 'mpereverov/mev-api',
-			description:'',
+			description:'Docker Image Name',
 			name: 'IMAGE_NAME',
 			trim: true
 		)
 	])
 ])
-
 
 pipeline {
 	agent any
@@ -28,12 +27,11 @@ pipeline {
 	}
   	post {
     	success {
-    		sh "echo $env.IMAGE_NAME:$env.BUILD_NUMBER"
-	    	build job: 'Deploy API component', 
+	    	build job: 'Deploy_API_component', 
 	    	parameters: [
 	    		    	string(name: 'component_NAME', value: 'API'), 
-	    		    	string(name: 'IMAGE_NAME', value: "$env.IMAGE_NAME"), 
-	    		    	string(name: 'IMAGE_TAG', value: "$env.BUILD_NUMBER")
+	    		    	string(name: 'img_NAME', value: "$env.IMAGE_NAME"), 
+	    		    	string(name: 'img_TAG', value: "$env.BUILD_NUMBER")
 	    		    	], quietPeriod: 5, wait: false
     	}
   	}
